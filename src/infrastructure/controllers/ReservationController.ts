@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
+import { MongoReservationRepository } from "../persistence/MongoReservationRepository";
 import { CreateReservation } from "../../application/use-cases/CreateReservation";
 import { GetReservationById } from "../../application/use-cases/GetReservationById";
 import { GetAllReservations } from "../../application/use-cases/GetAllReservations";
 import { UpdateReservation } from "../../application/use-cases/UpdateReservation";
 import { DeleteReservation } from "../../application/use-cases/DeleteReservation";
-import { InMemoryReservationRepository } from "../persistence/InMemoryReservationRepository";
 import { Reservation } from "../../domain/entities/Reservation";
 
-const reservationRepository = new InMemoryReservationRepository();
+const reservationRepository = new MongoReservationRepository();
 const createReservation = new CreateReservation(reservationRepository);
 const getReservationById = new GetReservationById(reservationRepository);
 const getAllReservations = new GetAllReservations(reservationRepository);
